@@ -15,10 +15,10 @@ protocol RepoListViewProtocol: AnyObject {
     func displayAlert(title: String, message: String, actions: [UIAlertAction])
 }
 
-private enum DataSource {
+ enum DataSource {
+    case all
     case bitbucket
     case github
-    case all
 }
 
 final class RepoListViewController: UIViewController, RepoListViewProtocol{
@@ -30,7 +30,7 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol{
     }
 
     private var presenter: RepoListPresenterProtocol
-    private var currentDataSource: DataSource = .github
+    private var currentDataSource: DataSource = .all
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -63,7 +63,7 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol{
     }()
 
     private lazy var filterButton = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "binoculars.fill"), style: .plain, target: self, action: #selector(sortingButtonTapped))
+        let button = UIBarButtonItem(image: UIImage(systemName: "binoculars.fill"), style: .plain, target: self, action: #selector(filterButtonTapped))
         button.tintColor = .black
         return button
     }()
@@ -79,17 +79,20 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol{
         let alertController = UIAlertController(title: "Сортировка", message: "Выберите тип сортировки", preferredStyle: .actionSheet)
 
         let noSortingAction = UIAlertAction(title: "Без сортировки", style: .default) { [weak self] _ in
-            self?.presenter.sortData(.none)
+            self?.presenter.repository = self?.presenter.sortedByName(.none, array: self?.presenter.repository ?? []) ?? []
+            self?.reloadTableData()
         }
         alertController.addAction(noSortingAction)
 
         let sortByAlphabetAction = UIAlertAction(title: "По алфавиту (A-Z)", style: .default) { [weak self] _ in
-            self?.presenter.sortData(.alphabeticalAscending)
+            self?.presenter.repository = self?.presenter.sortedByName(.alphabeticalAscending, array: self?.presenter.repository ?? []) ?? []
+            self?.reloadTableData()
         }
         alertController.addAction(sortByAlphabetAction)
 
         let sortByAlphabetReverseAction = UIAlertAction(title: "По алфавиту (Z-A)", style: .default) { [weak self] _ in
-            self?.presenter.sortData(.alphabeticalDescending)
+            self?.presenter.repository = self?.presenter.sortedByName(.alphabeticalDescending, array: self?.presenter.repository ?? []) ?? []
+            self?.reloadTableData()
         }
         alertController.addAction(sortByAlphabetReverseAction)
 
@@ -113,13 +116,12 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol{
         setupUI()
         presenter.fetchFromBitBucket()
         presenter.fetchFromGitHub()
+        showLoadingIndicator()
 
         presenter.waitForData { [weak self] in
-            self?.reloadTableData()
             self?.hideLoadingIndicator()
         }
     }
-
 
     private func setupUI() {
 
@@ -170,12 +172,10 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol{
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
         switch currentDataSource {
         case .all:
-            print("f")
-            //            presenter.waitForData {
-            //                self.reloadTableData()
-            //            }
+                        presenter.waitForData {
+                            self.reloadTableData()
+                        }
         case .bitbucket:
-            print("ggg")
             presenter.fetchFromBitBucket()
             
         case .github:
@@ -186,9 +186,11 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol{
 
     }
 
-    
     @objc private func sortingButtonTapped() {
         present(alertController, animated: true, completion: nil)
+    }
+
+    @objc private func filterButtonTapped() {
     }
 
     @objc func segmentedControlChanged(_ sender: UISegmentedControl) {
@@ -222,19 +224,19 @@ extension RepoListViewController: UITableViewDataSource, UITableViewDelegate {
         if let cell: RepoListCell = tableView.dequeueReusableCell(for: indexPath) {
             switch currentDataSource {
             case .all:
-                let repoData = presenter.repository[indexPath.row]
+                let repoData = presenter.sortedBySource(.all, array: presenter.repository)[indexPath.row]
                 presenter.imageForCell(repoData.image) { image in
                     cell.configure(data: repoData, image: image)
                 }
             case .bitbucket:
-                let repoData = presenter.bitbucketRepos[indexPath.row]
-                presenter.imageForCell(repoData.owner?.links?.avatar?.href?.absoluteString) { image in
-                    cell.configureBit(data: repoData, image: image)
+                let repoData = presenter.sortedBySource(.bitbucket, array: presenter.repository)[indexPath.row]
+                presenter.imageForCell(repoData.image) { image in
+                    cell.configure(data: repoData, image: image)
                 }
             case .github:
-                let repoData = presenter.githubRepos[indexPath.row]
-                presenter.imageForCell(repoData.owner.avatar) { image in
-                    cell.configureGit(data: repoData, image: image)
+                let repoData = presenter.sortedBySource(.github, array: presenter.repository)[indexPath.row]
+                presenter.imageForCell(repoData.image) { image in
+                    cell.configure(data: repoData, image: image)
                 }
             }
             return cell
@@ -249,5 +251,16 @@ extension RepoListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        var selectData: Repository
+        switch currentDataSource {
+        case .all:
+             selectData = presenter.sortedBySource(.all, array: presenter.repository)[indexPath.row]
+        case .bitbucket:
+             selectData = presenter.sortedBySource(.bitbucket, array: presenter.repository)[indexPath.row]
+        case .github:
+             selectData = presenter.sortedBySource(.github, array: presenter.repository)[indexPath.row]
+        }
+        let nextVC = InfoViewController(presenter: InfoPresenter(data: selectData, imageLoader: ImageLoader()))
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
