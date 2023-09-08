@@ -7,5 +7,6 @@ target 'RepoApp' do
 
   # Pods for RepoApp
 pod 'SnapKit', '~> 5.6.0'
+pod 'Alamofire'
 
 end

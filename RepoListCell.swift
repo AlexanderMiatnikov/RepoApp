@@ -15,8 +15,8 @@ final class RepoListCell: UITableViewCell {
     private enum Constants {
         static let fontSize: CGFloat = 14
         static let boldFontSize: CGFloat = 15
-        static let padding: CGFloat = 10
-        static let artistLabelTopOffset = 4
+        static let padding: CGFloat = 8
+        static let labelTopOffset = 4
         static let imageCornerRadius: CGFloat = 20
     }
 
@@ -42,6 +42,12 @@ final class RepoListCell: UITableViewCell {
         return label
     }()
 
+    private lazy var sourceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        return label
+    }()
+
 
     // MARK: - Lifecycle
 
@@ -56,13 +62,45 @@ final class RepoListCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = "text"
-        descriptionLabel.text = "nil"
+        titleLabel.text = "no info"
+        descriptionLabel.text = "no info"
         userImage.image = UIImage(named: "gitavatar")
     }
 
     // MARK: - Methods
 
+    func configureGit(data: GithubModel, image: Data?) {
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        sourceLabel.text = "Git"
+        if let imageData = image {
+            userImage.image = UIImage(data: imageData)
+        } else {
+            userImage.image = UIImage(named: "gitavatar")
+        }
+    }
+
+    func configureBit(data: BitbucketModel, image: Data?) {
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        sourceLabel.text = "Bit"
+        if let imageData = image {
+            userImage.image = UIImage(data: imageData)
+        } else {
+            userImage.image = UIImage(named: "gitavatar")
+        }
+    }
+
+    func configure(data: Repository, image: Data?) {
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        sourceLabel.text = data.source.rawValue
+        if let imageData = image {
+            userImage.image = UIImage(data: imageData)
+        } else {
+            userImage.image = UIImage(named: "gitavatar")
+        }
+    }
 
     // MARK: - Private Methods
 
@@ -71,6 +109,7 @@ final class RepoListCell: UITableViewCell {
         contentView.addSubview(userImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(sourceLabel)
         backgroundColor = .white
         makeConstraints()
     }
@@ -91,8 +130,13 @@ final class RepoListCell: UITableViewCell {
         }
 
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.artistLabelTopOffset)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.labelTopOffset)
             $0.left.equalTo(titleLabel)
+            $0.right.equalToSuperview().offset(-Constants.padding)
+        }
+
+        sourceLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-Constants.padding)
             $0.right.equalToSuperview().offset(-Constants.padding)
         }
     }
