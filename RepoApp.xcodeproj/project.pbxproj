@@ -11,7 +11,7 @@
 		F70583D32AA9FB420059EB70 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583D22AA9FB420059EB70 /* NetworkManager.swift */; };
 		F70583D52AA9FF570059EB70 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583D42AA9FF570059EB70 /* ImageLoader.swift */; };
 		F70583D82AAB0AA80059EB70 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583D72AAB0AA80059EB70 /* Repository.swift */; };
-		F70583DA2AAB149C0059EB70 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583D92AAB149C0059EB70 /* URLBuilder.swift */; };
+		F70583DA2AAB149C0059EB70 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583D92AAB149C0059EB70 /* APIModel.swift */; };
 		F70583DC2AAB37810059EB70 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583DB2AAB37810059EB70 /* UIViewController+Extension.swift */; };
 		F70583DF2AAB4AA30059EB70 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583DE2AAB4AA30059EB70 /* InfoViewController.swift */; };
 		F70583E12AAB4BA10059EB70 /* InfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70583E02AAB4BA10059EB70 /* InfoPresenter.swift */; };
@@ -20,12 +20,16 @@
 		F747E1E02AA9C199006B6D45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F747E1DE2AA9C199006B6D45 /* Main.storyboard */; };
 		F747E1E22AA9C199006B6D45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F747E1E12AA9C199006B6D45 /* Assets.xcassets */; };
 		F747E1E52AA9C199006B6D45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F747E1E32AA9C199006B6D45 /* LaunchScreen.storyboard */; };
+		F78B99F72AAE73100009CC91 /* RepoListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99F62AAE73100009CC91 /* RepoListProtocol.swift */; };
+		F78B99F92AAE816F0009CC91 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99F82AAE816F0009CC91 /* URL+Extension.swift */; };
+		F78B99FB2AAE83680009CC91 /* InfoPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99FA2AAE83680009CC91 /* InfoPresenterProtocol.swift */; };
 		F7AEB3972AA9C62E0099D022 /* RepoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3962AA9C62E0099D022 /* RepoListPresenter.swift */; };
 		F7AEB3992AA9C6450099D022 /* RepoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3982AA9C6450099D022 /* RepoListCell.swift */; };
 		F7AEB39B2AA9C6600099D022 /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB39A2AA9C6600099D022 /* RepoListViewController.swift */; };
 		F7AEB3A12AA9C76F0099D022 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3A02AA9C76F0099D022 /* UITableView+Extension.swift */; };
 		F7AEB3A42AA9EBF00099D022 /* GithubModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3A32AA9EBF00099D022 /* GithubModel.swift */; };
 		F7AEB3A62AA9EBFE0099D022 /* BitbucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3A52AA9EBFE0099D022 /* BitbucketModel.swift */; };
+		F7D72CF22AACB3810014E9D1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72CF12AACB3810014E9D1 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +39,7 @@
 		F70583D22AA9FB420059EB70 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F70583D42AA9FF570059EB70 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F70583D72AAB0AA80059EB70 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		F70583D92AAB149C0059EB70 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
+		F70583D92AAB149C0059EB70 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		F70583DB2AAB37810059EB70 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		F70583DE2AAB4AA30059EB70 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F70583E02AAB4BA10059EB70 /* InfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPresenter.swift; sourceTree = "<group>"; };
@@ -46,12 +50,16 @@
 		F747E1E12AA9C199006B6D45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F747E1E42AA9C199006B6D45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F747E1E62AA9C199006B6D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F78B99F62AAE73100009CC91 /* RepoListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListProtocol.swift; sourceTree = "<group>"; };
+		F78B99F82AAE816F0009CC91 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		F78B99FA2AAE83680009CC91 /* InfoPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPresenterProtocol.swift; sourceTree = "<group>"; };
 		F7AEB3962AA9C62E0099D022 /* RepoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListPresenter.swift; sourceTree = "<group>"; };
 		F7AEB3982AA9C6450099D022 /* RepoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListCell.swift; sourceTree = "<group>"; };
 		F7AEB39A2AA9C6600099D022 /* RepoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewController.swift; sourceTree = "<group>"; };
 		F7AEB3A02AA9C76F0099D022 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		F7AEB3A32AA9EBF00099D022 /* GithubModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubModel.swift; sourceTree = "<group>"; };
 		F7AEB3A52AA9EBFE0099D022 /* BitbucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitbucketModel.swift; sourceTree = "<group>"; };
+		F7D72CF12AACB3810014E9D1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				F70583D22AA9FB420059EB70 /* NetworkManager.swift */,
+				F70583D92AAB149C0059EB70 /* APIModel.swift */,
 				F70583D42AA9FF570059EB70 /* ImageLoader.swift */,
-				F70583D92AAB149C0059EB70 /* URLBuilder.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -98,6 +106,7 @@
 			children = (
 				F70583DE2AAB4AA30059EB70 /* InfoViewController.swift */,
 				F70583E02AAB4BA10059EB70 /* InfoPresenter.swift */,
+				F78B99FA2AAE83680009CC91 /* InfoPresenterProtocol.swift */,
 			);
 			path = InfoVC;
 			sourceTree = "<group>";
@@ -140,6 +149,7 @@
 			children = (
 				F7AEB39A2AA9C6600099D022 /* RepoListViewController.swift */,
 				F7AEB3962AA9C62E0099D022 /* RepoListPresenter.swift */,
+				F78B99F62AAE73100009CC91 /* RepoListProtocol.swift */,
 				F7AEB3982AA9C6450099D022 /* RepoListCell.swift */,
 			);
 			name = RepoList;
@@ -168,6 +178,7 @@
 		F7AEB39F2AA9C7570099D022 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F78B99F82AAE816F0009CC91 /* URL+Extension.swift */,
 				F7AEB3A02AA9C76F0099D022 /* UITableView+Extension.swift */,
 				F70583DB2AAB37810059EB70 /* UIViewController+Extension.swift */,
 			);
@@ -180,6 +191,7 @@
 				F7AEB3A32AA9EBF00099D022 /* GithubModel.swift */,
 				F7AEB3A52AA9EBFE0099D022 /* BitbucketModel.swift */,
 				F70583D72AAB0AA80059EB70 /* Repository.swift */,
+				F7D72CF12AACB3810014E9D1 /* Enums.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,15 +316,19 @@
 				F7AEB3972AA9C62E0099D022 /* RepoListPresenter.swift in Sources */,
 				F70583D52AA9FF570059EB70 /* ImageLoader.swift in Sources */,
 				F7AEB3992AA9C6450099D022 /* RepoListCell.swift in Sources */,
+				F78B99F92AAE816F0009CC91 /* URL+Extension.swift in Sources */,
+				F78B99F72AAE73100009CC91 /* RepoListProtocol.swift in Sources */,
 				F70583E12AAB4BA10059EB70 /* InfoPresenter.swift in Sources */,
 				F70583D82AAB0AA80059EB70 /* Repository.swift in Sources */,
-				F70583DA2AAB149C0059EB70 /* URLBuilder.swift in Sources */,
+				F70583DA2AAB149C0059EB70 /* APIModel.swift in Sources */,
 				F747E1D92AA9C199006B6D45 /* AppDelegate.swift in Sources */,
 				F7AEB39B2AA9C6600099D022 /* RepoListViewController.swift in Sources */,
 				F7AEB3A42AA9EBF00099D022 /* GithubModel.swift in Sources */,
 				F70583DF2AAB4AA30059EB70 /* InfoViewController.swift in Sources */,
 				F7AEB3A62AA9EBFE0099D022 /* BitbucketModel.swift in Sources */,
+				F78B99FB2AAE83680009CC91 /* InfoPresenterProtocol.swift in Sources */,
 				F747E1DB2AA9C199006B6D45 /* SceneDelegate.swift in Sources */,
+				F7D72CF22AACB3810014E9D1 /* Enums.swift in Sources */,
 				F7AEB3A12AA9C76F0099D022 /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

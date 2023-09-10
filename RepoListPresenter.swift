@@ -7,34 +7,19 @@
 
 import Foundation
 
-protocol RepoListPresenterProtocol: AnyObject {
-    var delegate: RepoListViewProtocol? { get set }
-    var githubRepos: [GithubModel] { get set }
-    var bitbucketRepos: [BitbucketModel] { get set }
-    var repository: [Repository] { get set }
-    func fetchFromGitHub()
-    func fetchFromBitBucket()
-    func waitForData(completion: @escaping () -> Void)
-    func imageForCell(_ name: String?, completion: @escaping (Data?) -> Void)
-    func sortedByName(_ option: SortingOption, array: [Repository]) -> [Repository]
-    func sortedBySource(_ option: DataSource, array: [Repository]) -> [Repository]
-}
-
-enum SortingOption {
-    case none
-    case alphabeticalAscending
-    case alphabeticalDescending
-}
-
 final class RepoListPresenter: RepoListPresenterProtocol {
 
     weak var delegate: RepoListViewProtocol?
     var networkService: NetworkManagerProtocol
     var imageLoader: ImageLoaderProtocol
-
+    var isFiltering: Bool = false
+    var selectedSearchType: SearchType = .author
     var githubRepos: [GithubModel] = []
     var bitbucketRepos: [BitbucketModel] = []
-    var repository: [Repository] = [] 
+    var repositoryArray: [Repository] = []
+    var originalRepository: [Repository] = []
+    var filteredData: [Repository] = []
+
 
     // MARK: - Lifecycle
 
@@ -43,23 +28,36 @@ final class RepoListPresenter: RepoListPresenterProtocol {
         self.imageLoader = imageLoader
     }
 
+    func filterRepositoriesBySearchText(_ option: SearchType, searchText: String) {
+        filteredData = repositoryArray.filter { repository in
+            switch option {
+            case .author:
+                return repository.name.lowercased().contains(searchText.lowercased())
+            case .repository:
+                return repository.description.lowercased().contains(searchText.lowercased())
+            case .none:
+                return true
+            }
+        }
+        delegate?.reloadTableData()
+    }
+
+
     func sortedByName(_ option: SortingOption, array: [Repository]) -> [Repository] {
         var sortedData: [Repository]
-
         switch option {
         case .none:
             sortedData = array
         case .alphabeticalAscending:
-            sortedData = array.sorted { $0.description ?? "" < $1.description ?? "" }
+            sortedData = array.sorted { $0.description < $1.description }
         case .alphabeticalDescending:
-            sortedData = array.sorted { $0.description ?? "" > $1.description ?? "" }
+            sortedData = array.sorted { $0.description > $1.description }
         }
         return sortedData
     }
 
     func sortedBySource(_ option: DataSource, array: [Repository]) -> [Repository] {
         var sortedData: [Repository]
-
         switch option {
         case .all:
             sortedData = array
@@ -72,32 +70,31 @@ final class RepoListPresenter: RepoListPresenterProtocol {
     }
 
     func combineRepositories(bitbucketRepositories: [BitbucketModel], githubRepositories: [GithubModel]) {
-        repository.removeAll()
+        repositoryArray.removeAll()
         for bitbucketRepo in bitbucketRepositories {
             let repo = Repository(
                 name: bitbucketRepo.name ?? "no name",
                 image: bitbucketRepo.owner?.links?.avatar?.href?.absoluteString ?? "",
-                description: bitbucketRepo.description,
+                description: bitbucketRepo.description ?? "no description",
                 source: .bitbucket
             )
-            repository.append(repo)
+            repositoryArray.append(repo)
         }
 
         for githubRepo in githubRepositories {
             let repo = Repository(
                 name: githubRepo.name ?? "no name",
                 image: githubRepo.owner.avatar ?? "",
-                description: githubRepo.description,
+                description: githubRepo.description ?? "no description",
                 source: .github
             )
-            repository.append(repo)
+            repositoryArray.append(repo)
         }
     }
 
     func waitForData(completion: @escaping () -> Void) {
         networkService.dispatchGroup.notify(queue: .main) {
             self.combineRepositories(bitbucketRepositories: self.bitbucketRepos, githubRepositories: self.githubRepos)
-            self.delegate?.reloadTableData()
             completion()
         }
     }
@@ -108,10 +105,6 @@ final class RepoListPresenter: RepoListPresenterProtocol {
             switch result {
             case .success(let repos):
                 self.githubRepos = repos
-                DispatchQueue.main.async {
-                    self.combineRepositories(bitbucketRepositories: self.bitbucketRepos, githubRepositories: self.githubRepos)
-
-                }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.displayErrorAlert(error: error)
@@ -126,10 +119,6 @@ final class RepoListPresenter: RepoListPresenterProtocol {
             switch result {
             case .success(let repos):
                 self.bitbucketRepos = repos
-                DispatchQueue.main.async {
-                    self.combineRepositories(bitbucketRepositories: self.bitbucketRepos, githubRepositories: self.githubRepos)
-                  
-                }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.displayErrorAlert(error: error)
@@ -143,7 +132,7 @@ final class RepoListPresenter: RepoListPresenterProtocol {
                                message: error.localizedDescription,
                                actions: [AlertAction.okay.action])
     }
-
+    
     func imageForCell(_ name: String?, completion: @escaping (Data?) -> Void) {
         if let coverLink = name {
             imageLoader.loadImage(from: coverLink) { imageData in

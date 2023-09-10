@@ -80,4 +80,17 @@ final class NetworkManager: NetworkManagerProtocol {
             completion(.failure(.noData))
         }
     }
+
+    func githubAPIURL() -> URL? {
+        return APIModel.github.baseURL
+            .appendingPathComponent(APIModel.github.path)
+            .withQueryParameters(APIModel.github.queryParameters)
+    }
+
+    func bitbucketAPIURL() -> URL? {
+        return APIModel.bitbucket.baseURL
+            .appendingPathComponent(APIModel.bitbucket.path)
+            .withQueryParameters(APIModel.bitbucket.queryParameters)
+    }
 }
+

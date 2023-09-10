@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol InfoPresenterProtocol: AnyObject {
-    var repository: Repository { get set }
-    func setImage(_ name: String?, completion: @escaping (Data?) -> Void)
-}
-
 final class InfoPresenter: InfoPresenterProtocol {
     var repository: Repository
     var imageLoader: ImageLoaderProtocol

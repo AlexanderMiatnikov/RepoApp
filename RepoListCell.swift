@@ -69,28 +69,6 @@ final class RepoListCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func configureGit(data: GithubModel, image: Data?) {
-        titleLabel.text = data.name
-        descriptionLabel.text = data.description
-        sourceLabel.text = "Git"
-        if let imageData = image {
-            userImage.image = UIImage(data: imageData)
-        } else {
-            userImage.image = UIImage(named: "gitavatar")
-        }
-    }
-
-    func configureBit(data: BitbucketModel, image: Data?) {
-        titleLabel.text = data.name
-        descriptionLabel.text = data.description
-        sourceLabel.text = "Bit"
-        if let imageData = image {
-            userImage.image = UIImage(data: imageData)
-        } else {
-            userImage.image = UIImage(named: "gitavatar")
-        }
-    }
-
     func configure(data: Repository, image: Data?) {
         titleLabel.text = data.name
         descriptionLabel.text = data.description
