@@ -62,9 +62,9 @@ final class RepoListCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = "no info"
-        descriptionLabel.text = "no info"
-        userImage.image = UIImage(named: "gitavatar")
+        titleLabel.text = Strings.noName
+        descriptionLabel.text = Strings.noDescription
+        userImage.image = UIImage(named: Asset.gitavatar.name)
     }
 
     // MARK: - Methods
@@ -76,7 +76,7 @@ final class RepoListCell: UITableViewCell {
         if let imageData = image {
             userImage.image = UIImage(data: imageData)
         } else {
-            userImage.image = UIImage(named: "gitavatar")
+            userImage.image = UIImage(named: Asset.gitavatar.name)
         }
     }
 

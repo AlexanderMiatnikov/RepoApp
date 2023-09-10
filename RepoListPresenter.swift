@@ -73,9 +73,9 @@ final class RepoListPresenter: RepoListPresenterProtocol {
         repositoryArray.removeAll()
         for bitbucketRepo in bitbucketRepositories {
             let repo = Repository(
-                name: bitbucketRepo.name ?? "no name",
+                name: bitbucketRepo.name ?? Strings.noName,
                 image: bitbucketRepo.owner?.links?.avatar?.href?.absoluteString ?? "",
-                description: bitbucketRepo.description ?? "no description",
+                description: bitbucketRepo.description ?? Strings.noDescription,
                 source: .bitbucket
             )
             repositoryArray.append(repo)
@@ -83,9 +83,9 @@ final class RepoListPresenter: RepoListPresenterProtocol {
 
         for githubRepo in githubRepositories {
             let repo = Repository(
-                name: githubRepo.name ?? "no name",
+                name: githubRepo.name ?? Strings.noName,
                 image: githubRepo.owner.avatar ?? "",
-                description: githubRepo.description ?? "no description",
+                description: githubRepo.description ?? Strings.noDescription,
                 source: .github
             )
             repositoryArray.append(repo)
@@ -128,7 +128,7 @@ final class RepoListPresenter: RepoListPresenterProtocol {
     }
 
     func displayErrorAlert(error: Error) {
-        delegate?.displayAlert(title: "Error",
+        delegate?.displayAlert(title: Strings.error,
                                message: error.localizedDescription,
                                actions: [AlertAction.okay.action])
     }

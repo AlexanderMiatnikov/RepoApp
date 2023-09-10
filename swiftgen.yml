@@ -1,0 +1,17 @@
+strings:
+  inputs:
+  - RepoApp/Resources
+  filter: .+\.strings$
+  outputs:
+    templateName: structured-swift5
+    params:
+      enumName: Strings
+    output: RepoApp/SwiftGen/strings.swift
+   
+      
+xcassets:
+  inputs:
+    - RepoApp/Resources/Images.xcassets
+  outputs:
+    - templateName: swift5
+      output: RepoApp/SwiftGen/assets.swift

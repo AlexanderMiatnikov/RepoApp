@@ -23,7 +23,6 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol {
     private enum Constants {
         static let offset = 16
         static let cellHeight: CGFloat = 70
-        static let vcTitle = "Repositories"
     }
 
     // MARK: - Private Properties
@@ -44,13 +43,13 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.vcTitle
+        label.text = Strings.titleRepositories
         return label
     }()
 
     private lazy var sortInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "Author name filter"
+        label.text = Strings.labelTypeFilterAuthor
         label.isHidden = true
         return label
     }()
@@ -65,7 +64,7 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol {
     }()
 
     private lazy var segmentedControl: UISegmentedControl = {
-        let items = ["All", "Bitbucket", "Github"]
+        let items = [Strings.segmentedControlAll, Strings.segmentedControlBitbucket, Strings.segmentedControlGithub]
         let segmentedControl = UISegmentedControl(items: items)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
@@ -169,7 +168,7 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol {
     private func configureSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search by Author"
+        searchController.searchBar.placeholder = Strings.searchPlaceholderAuthor
         searchController.delegate = self
         navigationItem.searchController = searchController
         definesPresentationContext = true
@@ -198,45 +197,45 @@ final class RepoListViewController: UIViewController, RepoListViewProtocol {
     }
 
     private func configureSortingAlertController() -> UIAlertController {
-        let alertController = UIAlertController(title: "Sorting", message: "Choose sorting type", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: Strings.sorting, message: Strings.chooseSortingType, preferredStyle: .actionSheet)
 
-        let noSortingAction = UIAlertAction(title: "No sorting", style: .default) { [weak self] _ in
+        let noSortingAction = UIAlertAction(title: Strings.noSorting, style: .default) { [weak self] _ in
             self?.presenter.repositoryArray = self?.presenter.originalRepository ?? []
             self?.reloadTableData()
         }
         alertController.addAction(noSortingAction)
 
-        let sortByAlphabetAction = UIAlertAction(title: "(A-Z)", style: .default) { [weak self] _ in
+        let sortByAlphabetAction = UIAlertAction(title: Strings.az, style: .default) { [weak self] _ in
             self?.presenter.repositoryArray = self?.presenter.sortedByName(.alphabeticalAscending, array: self?.presenter.repositoryArray ?? []) ?? []
             self?.reloadTableData()
         }
         alertController.addAction(sortByAlphabetAction)
 
-        let sortByAlphabetReverseAction = UIAlertAction(title: "(Z-A)", style: .default) { [weak self] _ in
+        let sortByAlphabetReverseAction = UIAlertAction(title: Strings.za, style: .default) { [weak self] _ in
             self?.presenter.repositoryArray = self?.presenter.sortedByName(.alphabeticalDescending, array: self?.presenter.repositoryArray ?? []) ?? []
             self?.reloadTableData()
         }
         alertController.addAction(sortByAlphabetReverseAction)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
 
         return alertController
     }
 
     private func setFilterButtonMenu() {
-        let actionShare = UIAction(title: "Author", image: nil) { action in
-            self.searchController.searchBar.placeholder = "Search by Author"
+        let actionShare = UIAction(title: Strings.author, image: nil) { action in
+            self.searchController.searchBar.placeholder = Strings.searchPlaceholderAuthor
             self.presenter.selectedSearchType = .author
-            self.sortInfoLabel.text = "Enter author name"
+            self.sortInfoLabel.text = Strings.labelTypeFilterAuthor
         }
-        let actionAdd = UIAction(title: "Repository", image: nil) { action in
-            self.searchController.searchBar.placeholder = "Search by Repository"
+        let actionAdd = UIAction(title: Strings.repository, image: nil) { action in
+            self.searchController.searchBar.placeholder = Strings.searchPlaceholderRepository
             self.presenter.selectedSearchType = .repository
-            self.sortInfoLabel.text = "Enter repository name"
+            self.sortInfoLabel.text = Strings.labelTypeFilterRepository
 
         }
-        let menu = UIMenu(title: "Choose filter", children: [actionShare, actionAdd])
+        let menu = UIMenu(title: Strings.chooseFilter, children: [actionShare, actionAdd])
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: nil,
                                                            image: UIImage(systemName: "magnifyingglass"),
                                                            primaryAction: nil,

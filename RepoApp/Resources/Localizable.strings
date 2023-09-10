@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  RepoApp
+
+  Created by Aliaksandr Miatnikau on 11.09.23.
+  
+*/
+"titleRepositories" = "Repositories";
+"labelTypeFilterAuthor" = "Enter author name";
+"labelTypeFilterRepository" = "Enter repository name";
+
+"segmentedControlAll" = "All";
+"segmentedControlBitbucket" = "Bitbucket";
+"segmentedControlGithub" = "Github";
+
+"searchPlaceholderAuthor" = "Search by Author";
+"searchPlaceholderRepository" = "Search by Repository";
+
+"sorting" = "Sorting";
+"noSorting" = "No Sorting";
+"az" = "(A-Z)";
+"za" = "(Z-A)";
+"cancel" = "Cancel";
+"author" = "Author";
+"repository" = "Repository";
+"chooseFilter" = "Choose filter";
+"chooseSortingType" = "Choose sorting type";
+
+"noName" = "no name";
+"noDescription" = "no description";
+"error" = "Error";

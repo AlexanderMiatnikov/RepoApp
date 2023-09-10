@@ -18,11 +18,14 @@
 		F747E1D92AA9C199006B6D45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747E1D82AA9C199006B6D45 /* AppDelegate.swift */; };
 		F747E1DB2AA9C199006B6D45 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747E1DA2AA9C199006B6D45 /* SceneDelegate.swift */; };
 		F747E1E02AA9C199006B6D45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F747E1DE2AA9C199006B6D45 /* Main.storyboard */; };
-		F747E1E22AA9C199006B6D45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F747E1E12AA9C199006B6D45 /* Assets.xcassets */; };
+		F747E1E22AA9C199006B6D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F747E1E12AA9C199006B6D45 /* Images.xcassets */; };
 		F747E1E52AA9C199006B6D45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F747E1E32AA9C199006B6D45 /* LaunchScreen.storyboard */; };
 		F78B99F72AAE73100009CC91 /* RepoListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99F62AAE73100009CC91 /* RepoListProtocol.swift */; };
 		F78B99F92AAE816F0009CC91 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99F82AAE816F0009CC91 /* URL+Extension.swift */; };
 		F78B99FB2AAE83680009CC91 /* InfoPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99FA2AAE83680009CC91 /* InfoPresenterProtocol.swift */; };
+		F78B99FD2AAE84940009CC91 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F78B99FC2AAE84940009CC91 /* Localizable.strings */; };
+		F78B9A012AAE851F0009CC91 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B99FF2AAE851F0009CC91 /* assets.swift */; };
+		F78B9A022AAE851F0009CC91 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78B9A002AAE851F0009CC91 /* strings.swift */; };
 		F7AEB3972AA9C62E0099D022 /* RepoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3962AA9C62E0099D022 /* RepoListPresenter.swift */; };
 		F7AEB3992AA9C6450099D022 /* RepoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB3982AA9C6450099D022 /* RepoListCell.swift */; };
 		F7AEB39B2AA9C6600099D022 /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEB39A2AA9C6600099D022 /* RepoListViewController.swift */; };
@@ -47,12 +50,15 @@
 		F747E1D82AA9C199006B6D45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F747E1DA2AA9C199006B6D45 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F747E1DF2AA9C199006B6D45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F747E1E12AA9C199006B6D45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F747E1E12AA9C199006B6D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F747E1E42AA9C199006B6D45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F747E1E62AA9C199006B6D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F78B99F62AAE73100009CC91 /* RepoListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListProtocol.swift; sourceTree = "<group>"; };
 		F78B99F82AAE816F0009CC91 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F78B99FA2AAE83680009CC91 /* InfoPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPresenterProtocol.swift; sourceTree = "<group>"; };
+		F78B99FC2AAE84940009CC91 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F78B99FF2AAE851F0009CC91 /* assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
+		F78B9A002AAE851F0009CC91 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		F7AEB3962AA9C62E0099D022 /* RepoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListPresenter.swift; sourceTree = "<group>"; };
 		F7AEB3982AA9C6450099D022 /* RepoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListCell.swift; sourceTree = "<group>"; };
 		F7AEB39A2AA9C6600099D022 /* RepoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewController.swift; sourceTree = "<group>"; };
@@ -138,10 +144,20 @@
 				F70583DD2AAB4A830059EB70 /* InfoVC */,
 				F7AEB39F2AA9C7570099D022 /* Extensions */,
 				F7AEB39D2AA9C6BA0099D022 /* App */,
+				F78B99FE2AAE84AE0009CC91 /* SwiftGen */,
 				F7AEB39E2AA9C6D50099D022 /* Resources */,
 				F747E1E62AA9C199006B6D45 /* Info.plist */,
 			);
 			path = RepoApp;
+			sourceTree = "<group>";
+		};
+		F78B99FE2AAE84AE0009CC91 /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				F78B99FF2AAE851F0009CC91 /* assets.swift */,
+				F78B9A002AAE851F0009CC91 /* strings.swift */,
+			);
+			path = SwiftGen;
 			sourceTree = "<group>";
 		};
 		F7AEB39C2AA9C6680099D022 /* RepoList */ = {
@@ -170,7 +186,8 @@
 		F7AEB39E2AA9C6D50099D022 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F747E1E12AA9C199006B6D45 /* Assets.xcassets */,
+				F747E1E12AA9C199006B6D45 /* Images.xcassets */,
+				F78B99FC2AAE84940009CC91 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -257,7 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F747E1E52AA9C199006B6D45 /* LaunchScreen.storyboard in Resources */,
-				F747E1E22AA9C199006B6D45 /* Assets.xcassets in Resources */,
+				F78B99FD2AAE84940009CC91 /* Localizable.strings in Resources */,
+				F747E1E22AA9C199006B6D45 /* Images.xcassets in Resources */,
 				F747E1E02AA9C199006B6D45 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +334,7 @@
 				F7AEB3972AA9C62E0099D022 /* RepoListPresenter.swift in Sources */,
 				F70583D52AA9FF570059EB70 /* ImageLoader.swift in Sources */,
 				F7AEB3992AA9C6450099D022 /* RepoListCell.swift in Sources */,
+				F78B9A022AAE851F0009CC91 /* strings.swift in Sources */,
 				F78B99F92AAE816F0009CC91 /* URL+Extension.swift in Sources */,
 				F78B99F72AAE73100009CC91 /* RepoListProtocol.swift in Sources */,
 				F70583E12AAB4BA10059EB70 /* InfoPresenter.swift in Sources */,
@@ -325,6 +344,7 @@
 				F7AEB39B2AA9C6600099D022 /* RepoListViewController.swift in Sources */,
 				F7AEB3A42AA9EBF00099D022 /* GithubModel.swift in Sources */,
 				F70583DF2AAB4AA30059EB70 /* InfoViewController.swift in Sources */,
+				F78B9A012AAE851F0009CC91 /* assets.swift in Sources */,
 				F7AEB3A62AA9EBFE0099D022 /* BitbucketModel.swift in Sources */,
 				F78B99FB2AAE83680009CC91 /* InfoPresenterProtocol.swift in Sources */,
 				F747E1DB2AA9C199006B6D45 /* SceneDelegate.swift in Sources */,

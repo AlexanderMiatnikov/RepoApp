@@ -84,7 +84,7 @@ final class InfoViewController: UIViewController {
             if let imageData = image {
                 self.imageView.image = UIImage(data: imageData)
             } else {
-                self.imageView.image = UIImage(named: "gitavatar")
+                self.imageView.image = UIImage(named: Asset.gitavatar.name)
             }
         }
 
